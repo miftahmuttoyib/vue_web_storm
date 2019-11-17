@@ -5,7 +5,7 @@ import router from "@/router";
 import Dashboard from "@/pages/Dashboard";
 import Login from "@/pages/Login";
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 Vue.component('login', Login);
 Vue.component('dashboard', Dashboard);

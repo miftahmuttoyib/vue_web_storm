@@ -9,7 +9,7 @@ import Warehouse from "@/pages/Warehouse";
 Vue.use(Router);
 
 export default new Router({
-    mode: "history",
+    // mode: "history",
     routes: [
         {
             path: "/",

@@ -8,7 +8,7 @@
                         <input-username></input-username>
                         <input-password></input-password>
                         <check-box-remember-me></check-box-remember-me>
-                        <login-button></login-button>
+                        <login-button @click.native="onLoginButtonClick"></login-button>
                     </form>
                 </div>
                 <div class="card-footer bg-white p-0  ">
@@ -30,7 +30,17 @@
     import InputUsername from "@/components/input/InputUsername";
     export default {
         name: "login",
-        components: {InputUsername, InputPassword, CheckBoxRememberMe, LoginButton}
+        components: {InputUsername, InputPassword, CheckBoxRememberMe, LoginButton},
+        data: function () {
+            return {
+
+            }
+        },
+        methods: {
+            onLoginButtonClick() {
+                alert("kamu klik button submit ");
+            }
+        }
     }
 </script>
 

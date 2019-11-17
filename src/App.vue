@@ -1,15 +1,15 @@
 <template>
     <div id="app" class="dashboard-main-wrapper">
+
         <navigation-bar></navigation-bar>
         <side-bar></side-bar>
-        <router-view></router-view>
-<!--      <img alt="Vue logo" src="./assets/logo.png">-->
-<!--      <HelloWorld msg="Welcome to Your Vue.js App"/>-->
+        <div id="content">
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
 import NavigationBar from "@/components/main/NavigationBar";
 import SideBar from "@/components/main/SideBar";
 
