@@ -79,7 +79,7 @@
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <tr v-for="(item, index) in problemList" v-bind:aria-valuemax="item.id" :key="index">
+                                                        <tr v-for="(item, index) in dataList" v-bind:aria-valuemax="item.id" :key="index">
                                                             <td>{{item.id}}</td>
                                                             <td>{{item.name}}</td>
                                                             <td>
@@ -113,7 +113,7 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Daftar Problem</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -129,6 +129,7 @@
                                         <th>Priority</th>
                                         <th>Working Type</th>
                                         <th>Execution Time</th>
+                                        <th>Tambahkan</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -138,6 +139,11 @@
                                         <td>{{item.priority}}</td>
                                         <td>{{item.workingType}}</td>
                                         <td>{{item.executionTime}} Hari</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-light" data-dismiss="modal" @click="addToData(item)">
+                                                <i class="fas fa-plus"/>
+                                            </button>
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -146,7 +152,6 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -185,6 +190,7 @@
                     {id:"7",name:"Kran",problemList: ["Air tidak keluar", "Bocor", "Air Kotor"]},
                     {id:"8",name:"Atap",problemList: ["Bocor", "Retak", "Jatuh", "Ada binatang"]}
                 ],
+                dataList: [],
                 problemList: [
                     {id:"1",name:"AC Tidak Dingin",priority:4,executionTime:1,workingType:"Electrical"},
                     {id:"3",name:"Kipas AC Tidak Jalan",priority:4,executionTime:2,workingType:"Electrical"},
@@ -211,8 +217,13 @@
             addData() {
                 // this.listValueTable
             },
+            addToData(item) {
+                if (this.dataList.filter(data => data.id === item.id).length === 0) {
+                    this.dataList.push(item);
+                }
+            },
             removeData(idx) {
-                this.listValueTable.splice(idx, 1);
+                this.dataList.splice(idx, 1);
             }
         }
     }
