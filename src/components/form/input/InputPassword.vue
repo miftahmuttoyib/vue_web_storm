@@ -1,24 +1,21 @@
 <template>
     <div class="form-group">
-        <input
-                class="form-control form-control-lg"
-                id="username" type="text"
-                placeholder="Username"
-                :value="value"
-                @input="updateValue" autocomplete="off">
+        <label for="inputPassword">Password</label>
+        <input id="inputPassword" type="password" placeholder="Password" class="form-control" :value="value" @input="updateValue">
     </div>
 </template>
+
 <script>
     export default {
-        name: "InputUsername",
+        name: "InputPassword",
         props: {
             value: {
                 default: ""
             }
         },
-        data: function () {
-            return {
-                username: ""
+        data: function() {
+            return{
+
             }
         },
         methods: {

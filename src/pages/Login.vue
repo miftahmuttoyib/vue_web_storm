@@ -1,21 +1,28 @@
 <template>
-    <div class="login-page">
+    <div id="login">
         <div class="splash-container">
             <div class="card ">
-                <div class="card-header text-center"><a href="../index.html">img class="logo-img" src="../assets/images/logo.png" alt="logo"></a><span class="splash-description">Please enter your user information.</span></div>
+                <div class="card-header text-center">
+                    <a href="#/login">
+                        <img class="logo-img" src="../assets/puzzle.png" alt="logo">
+                    </a>
+                    <h5 class="pageheader-title">My Home Sweet Apartment</h5>
+<!--                    <span class="splash-description">Please enter your user information.</span>-->
+                </div>
                 <div class="card-body">
                     <form>
-                        <input-username></input-username>
-                        <input-password></input-password>
+                        <input-username v-model="username"></input-username>
+                        <input-password v-model="password"></input-password>
+<!--                        <label>test: {{username}}</label>-->
                         <check-box-remember-me></check-box-remember-me>
                         <login-button @click.native="onLoginButtonClick"></login-button>
                     </form>
                 </div>
                 <div class="card-footer bg-white p-0  ">
                     <div class="card-footer-item card-footer-item-bordered">
-                        <a href="#" class="footer-link">Create An Account</a></div>
+                        <a href="#/sign-up" class="footer-link">Create An Account</a></div>
                     <div class="card-footer-item card-footer-item-bordered">
-                        <a href="#" class="footer-link">Forgot Password</a>
+                        <a href="#/forgot-password" class="footer-link">Forgot Password</a>
                     </div>
                 </div>
             </div>
@@ -28,33 +35,22 @@
     import CheckBoxRememberMe from "@/components/input/CheckBoxRememberMe";
     import InputPassword from "@/components/input/InputPassword";
     import InputUsername from "@/components/input/InputUsername";
+    import {LoginApi} from "@/API/LoginApi";
     export default {
         name: "login",
         components: {InputUsername, InputPassword, CheckBoxRememberMe, LoginButton},
         data: function () {
             return {
-
+                username: "",
+                password: ""
             }
         },
         methods: {
             onLoginButtonClick() {
-                alert("kamu klik button submit ");
+                LoginApi.getUser(function (result) {
+                    alert(result.id);
+                });
             }
         }
     }
 </script>
-
-<style scoped>
-    .login-page {
-        height: 100%;
-    }
-
-    .login-page {
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-align: center;
-        align-items: center;
-        padding-top: 40px;
-        padding-bottom: 40px;
-    }
-</style>

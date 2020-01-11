@@ -10,7 +10,7 @@
                             <form class="needs-validation" novalidate>
                                 <div class="row">
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                                        <input-text required="true" placeholder="Input warehouse name here" label="Warehouse Name"></input-text>
+                                        <input-text mandatory="true" placeholder="Input warehouse name here" label="Warehouse Name"></input-text>
                                     </div>
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                         <label for="validationCustom02">Last name</label>

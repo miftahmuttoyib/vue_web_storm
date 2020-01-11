@@ -1,22 +1,18 @@
 <template>
     <div class="form-group">
         <label :for="label">{{label}}</label>
-        <input type="text"
-               class="form-control"
-               :id="label"
-               :placeholder="placeholder"
-               :value="value"
-               :required="mandatory"
-               @input="updateValue">
-        <div class="invalid-feedback">
-            {{validationFeedback}}
-        </div>
+        <select class="form-control" :id="label" :required="mandatory">
+            <option value="">Please Select</option>
+            <option v-for="(item, index) in listValue" v-bind:value="item.id" :key="index">
+                {{item.name}}
+            </option>
+        </select>
     </div>
 </template>
 
 <script>
     export default {
-        name: "InputText",
+        name: "DropDown",
         props: {
             value: {
                 default: ""
@@ -32,11 +28,14 @@
             },
             mandatory: {
                 default: false
+            },
+            listValue: {
+                default: []
             }
         },
         data: function () {
             return {
-
+                // list: this.listValue
             }
         },
         methods: {

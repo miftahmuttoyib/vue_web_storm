@@ -1,13 +1,13 @@
 <template>
     <div class="form-group">
-        <label :for="label">{{label}}</label>
-        <input type="text"
-               class="form-control"
+        <label :for="label">{{label}} <small class="text-muted">{{note}}</small></label>
+        <input type="text" class="form-control decimal-inputmask"
                :id="label"
                :placeholder="placeholder"
                :value="value"
                :required="mandatory"
-               @input="updateValue">
+               @input="updateValue"
+               style="text-align: right;">
         <div class="invalid-feedback">
             {{validationFeedback}}
         </div>
@@ -16,7 +16,7 @@
 
 <script>
     export default {
-        name: "InputText",
+        name: "InputNumber",
         props: {
             value: {
                 default: ""
@@ -32,6 +32,9 @@
             },
             mandatory: {
                 default: false
+            },
+            note: {
+                default: ""
             }
         },
         data: function () {

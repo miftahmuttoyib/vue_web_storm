@@ -1963,7 +1963,18 @@ Splash Container / Wrapper
     margin: auto;
 }
 
+.splash-container-form {
+    width: 100%;
+    max-width: 450px;
+    padding: 15px;
+    margin: auto;
+}
+
 .splash-container .card-header {
+    padding: 20px;
+}
+
+.splash-container-form .card-header {
     padding: 20px;
 }
 
@@ -1984,6 +1995,10 @@ Splash Container / Wrapper
 }
 
 .splash-container .card-footer-item {
+    padding: 12px 28px;
+}
+
+.splash-container-form .card-footer-item {
     padding: 12px 28px;
 }
 

@@ -4,7 +4,12 @@ import Router from 'vue-router'
 
 import Dashboard from './pages/Dashboard'
 import Login from "@/pages/Login";
+import SignUp from "@/pages/SignUp";
+import ForgotPassword from "@/pages/ForgotPassword";
 import Warehouse from "@/pages/Warehouse";
+import Problem from "@/pages/Problem";
+import Facilities from "@/pages/Facilities";
+// import Room from "@/pages/Room";
 
 Vue.use(Router);
 
@@ -13,8 +18,8 @@ export default new Router({
     routes: [
         {
             path: "/",
-            name: "dashboard",
-            component: Dashboard
+            name: "login",
+            component: Login
         },
         {
             path: "/login",
@@ -22,10 +27,40 @@ export default new Router({
             component: Login
         },
         {
+            path: "#/sign-up",
+            name: "signUp",
+            component: SignUp
+        },
+        {
+            path: "/forgot-password",
+            name: "forgotPassword",
+            component: ForgotPassword
+        },
+        {
+            path: "/dashboard",
+            name: "dashboard",
+            component: Dashboard
+        },
+        {
             path: "/warehouse",
             name: "warehouse",
             component: Warehouse
-        }
+        },
+        {
+            path: "/problem",
+            name: "problem",
+            component: Problem
+        },
+        {
+            path: "/facilities",
+            name: "facilities",
+            component: Facilities
+        },
+        // {
+        //     path: "/room",
+        //     name: "room",
+        //     components: Room
+        // }
     ]
 
 });

@@ -1,8 +1,9 @@
 <template>
-    <div id="app" class="dashboard-main-wrapper">
-
-        <navigation-bar></navigation-bar>
-        <side-bar></side-bar>
+    <div id="app">
+        <div v-if="session">
+            <navigation-bar></navigation-bar>
+            <side-bar></side-bar>
+        </div>
         <div id="content">
             <router-view></router-view>
         </div>
@@ -18,7 +19,19 @@ export default {
     components: {
         SideBar,
         NavigationBar
-  }
+    },
+    data: function() {
+        return {
+            session: false
+        }
+    },
+    methods: {
+
+    },
+    mounted: function () {
+        this.session = true;
+
+    }
 }
 </script>
 

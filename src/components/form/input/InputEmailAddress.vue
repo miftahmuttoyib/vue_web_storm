@@ -1,16 +1,14 @@
 <template>
     <div class="form-group">
-        <input
-                class="form-control form-control-lg"
-                id="username" type="text"
-                placeholder="Username"
-                :value="value"
-                @input="updateValue" autocomplete="off">
+        <label for="inputEmail">Email address</label>
+        <input id="inputEmail" type="email" placeholder="name@example.com" class="form-control" :value="value" @input="updateValue">
+        <p>We'll never share your email with anyone else.</p>
     </div>
 </template>
+
 <script>
     export default {
-        name: "InputUsername",
+        name: "InputEmailAddress",
         props: {
             value: {
                 default: ""
@@ -18,12 +16,11 @@
         },
         data: function () {
             return {
-                username: ""
+
             }
         },
         methods: {
             updateValue: function (event) {
-                alert(event.target.value);
                 this.$emit('input', event.target.value)
             }
         }
