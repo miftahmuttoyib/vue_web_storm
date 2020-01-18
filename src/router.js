@@ -9,7 +9,7 @@ import ForgotPassword from "@/pages/ForgotPassword";
 import Warehouse from "@/pages/Warehouse";
 import Problem from "@/pages/Problem";
 import Facilities from "@/pages/Facilities";
-// import Room from "@/pages/Room";
+import Room from "@/pages/Room";
 
 Vue.use(Router);
 
@@ -27,7 +27,7 @@ export default new Router({
             component: Login
         },
         {
-            path: "#/sign-up",
+            path: "/sign-up",
             name: "signUp",
             component: SignUp
         },
@@ -56,11 +56,12 @@ export default new Router({
             name: "facilities",
             component: Facilities
         },
-        // {
-        //     path: "/room",
-        //     name: "room",
-        //     components: Room
-        // }
+        {
+            path: "/room",
+            name: "room",
+            component: Room
+        },
+
     ]
 
 });
