@@ -89,6 +89,8 @@
     import InputText from "@/components/input/InputText";
     import InputNumber from "@/components/input/InputNumber";
     import DropDown from "@/components/input/DropDown";
+    import {ProblemApi} from "@/API/ProblemApi";
+
     export default {
         name: "Problem",
         components: {DropDown, InputNumber, InputText, LinkedButton, HeaderContent},
@@ -105,13 +107,13 @@
                     {id: 2, name: "Mechanic/Sipil"}
                 ],
                 listValueTable: [
-                    {id:"1",name:"AC Tidak Dingin",priority:4,executionTime:1,workingType:"Electrical"},
-                    {id:"3",name:"Kipas AC Tidak Jalan",priority:4,executionTime:2,workingType:"Electrical"},
-                    {id:"4",name:"Lantai Pecah",priority:3,executionTime:3,workingType:"Mechanic/Sipil"},
-                    {id:"5",name:"Mesin Cuci Mati",priority:1,executionTime:1,workingType:"Electrical"},
-                    {id:"6",name:"Terminal Listrik Utama Mati",priority:1,executionTime:1,workingType:"Electrical"},
-                    {id:"7",name:"Air Kran Tidak Keluar",priority:2,executionTime:1,workingType:"Mechanic/Sipil"},
-                    {id:"8",name:"Atap Bocor",priority:1,executionTime:1,workingType:"Mechanic/Sipil"}
+                    // {id:"1",name:"AC Tidak Dingin",priority:4,executionTime:1,workingType:"Electrical"},
+                    // {id:"3",name:"Kipas AC Tidak Jalan",priority:4,executionTime:2,workingType:"Electrical"},
+                    // {id:"4",name:"Lantai Pecah",priority:3,executionTime:3,workingType:"Mechanic/Sipil"},
+                    // {id:"5",name:"Mesin Cuci Mati",priority:1,executionTime:1,workingType:"Electrical"},
+                    // {id:"6",name:"Terminal Listrik Utama Mati",priority:1,executionTime:1,workingType:"Electrical"},
+                    // {id:"7",name:"Air Kran Tidak Keluar",priority:2,executionTime:1,workingType:"Mechanic/Sipil"},
+                    // {id:"8",name:"Atap Bocor",priority:1,executionTime:1,workingType:"Mechanic/Sipil"}
                 ]
             }
         },
@@ -130,6 +132,11 @@
             removeData(idx) {
                 this.listValueTable.splice(idx, 1);
             }
+        },
+        mounted: function() {
+            ProblemApi.getAll((result) => {
+                this.listValueTable = result;
+            });
         }
     }
 </script>

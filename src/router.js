@@ -10,6 +10,7 @@ import Warehouse from "@/pages/Warehouse";
 import Problem from "@/pages/Problem";
 import Facilities from "@/pages/Facilities";
 import Room from "@/pages/Room";
+import Building from "@/pages/Building";
 
 Vue.use(Router);
 
@@ -61,7 +62,11 @@ export default new Router({
             name: "room",
             component: Room
         },
-
+        {
+            path: "/building",
+            name: "building",
+            component: Building
+        }
     ]
 
 });
