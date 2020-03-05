@@ -15,3 +15,37 @@ Array.prototype.remove = function (key, value) {
         ...this.slice(index + 1)
     ] : this;
 };
+
+
+export class ZavieraLib {
+    static workingType = [
+        {id: 1, name: "Electrical"},
+        {id: 2, name: "Mechanic/Sipil"}
+    ];
+
+    static recreateObj(obj, varParamName, varObjName) {
+        if (obj[varParamName] === "1") {
+            obj[varObjName] = this.workingType[0];
+        } else {
+            obj[varObjName] = this.workingType[1];
+        }
+    }
+
+    static convertTypeToObj(obj, varParamName, varObjName) {
+        if (obj instanceof Array) {
+            obj.forEach(item => {
+                this.recreateObj(item, varParamName, varObjName);
+            });
+        } else {
+            this.recreateObj(obj, varParamName, varObjName)
+        }
+    }
+
+    static convertWorkingTypeToObj (obj) {
+        this.convertTypeToObj(obj, 'workingType', 'workingTypeObj');
+    }
+
+    static convertFacilitiesTypeToObj (obj) {
+        this.convertTypeToObj(obj, 'facilitiesType', 'facilitiesTypeObj')
+    }
+}

@@ -1,7 +1,7 @@
 <template>
     <div class="form-group">
         <label :for="label">{{label}}</label>
-        <select class="form-control" :id="label" :required="mandatory">
+        <select class="form-control" :id="label" :required="mandatory" @input="updateValue">
             <option value="">Please Select</option>
             <option v-for="(item, index) in listValue" v-bind:value="item.id" :key="index">
                 {{item.name}}

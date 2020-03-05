@@ -29,7 +29,7 @@
                                             <td>{{item.name}}</td>
                                             <td>
                                                 <ul>
-                                                    <li v-for="problem in item.problemList" :key="problem">{{problem}}</li>
+                                                    <li v-for="problem in item.problemList" :key="problem.id">{{problem.name}}</li>
                                                 </ul>
                                             </td>
                                             <td>
@@ -55,10 +55,10 @@
                                 <form class="needs-validation" novalidate>
                                     <div class="row">
                                         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 ">
-                                            <input-text label="Name" mandatory="true" validation-feedback="Ops... your input just wrong! T_T"/>
+                                            <input-text v-model="form.name" label="Name" mandatory="true" validation-feedback="Ops... your input just wrong! T_T"/>
                                         </div>
                                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
-                                            <drop-down label="Facility Type" mandatory="true" :list-value="listValue"/>
+                                            <drop-down v-model="form.facilitiesType" label="Facility Type" mandatory="true" :list-value="listValue"/>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -98,7 +98,7 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                            <button class="btn btn-space btn-primary" type="submit">Submit form</button>
+                                            <save-button @click.native="onSaveButtonClick"/>
                                             <button class="btn btn-space btn-secondary" @click="onCancelButton">Cancel</button>
                                         </div>
                                     </div>
@@ -137,7 +137,7 @@
                                         <td>{{item.id}}</td>
                                         <td>{{item.name}}</td>
                                         <td>{{item.priority}}</td>
-                                        <td>{{item.workingType}}</td>
+                                        <td>{{item.workingTypeObj.name}}</td>
                                         <td>{{item.executionTime}} Hari</td>
                                         <td>
                                             <button class="btn btn-sm btn-outline-light" data-dismiss="modal" @click="addToData(item)">
@@ -164,9 +164,12 @@
     import LinkedButton from "@/components/button/LinkedButton";
     import InputText from "@/components/input/InputText";
     import DropDown from "@/components/input/DropDown";
+    import {ProblemApi} from "@/API/ProblemApi";
+    import {FacilitiesApi} from "@/API/FacilitiesApi";
+    import SaveButton from "@/components/button/SaveButton";
     export default {
         name: "Facilities",
-        components: {InputText, LinkedButton, HeaderContent, DropDown},
+        components: {SaveButton, InputText, LinkedButton, HeaderContent, DropDown},
         props: {
 
         },
@@ -182,24 +185,15 @@
                     {id: 1, name: "Electrical"},
                     {id: 2, name: "Mechanic/Sipil"}
                 ],
-                listValueTable: [
-                    {id:"1",name:"AC",problemList: ["Tidak dingin", "Bocor", "Mati"]},
-                    {id:"4",name:"Lantai",problemList: ["Pecah", "Lepas", "Retak"]},
-                    {id:"5",name:"Mesin Cuci",problemList: ["Mati", "Tidak Berputer", "Tombol Rusak"]},
-                    {id:"6",name:"Terminal Listrik",problemList: ["Mati"]},
-                    {id:"7",name:"Kran",problemList: ["Air tidak keluar", "Bocor", "Air Kotor"]},
-                    {id:"8",name:"Atap",problemList: ["Bocor", "Retak", "Jatuh", "Ada binatang"]}
-                ],
+                form: {
+                    name: "",
+                    facilitiesType: undefined,
+                    problemList: []
+
+                },
+                listValueTable: [],
                 dataList: [],
-                problemList: [
-                    {id:"1",name:"AC Tidak Dingin",priority:4,executionTime:1,workingType:"Electrical"},
-                    {id:"3",name:"Kipas AC Tidak Jalan",priority:4,executionTime:2,workingType:"Electrical"},
-                    {id:"4",name:"Lantai Pecah",priority:3,executionTime:3,workingType:"Engineering"},
-                    {id:"5",name:"Mesin Cuci Mati",priority:1,executionTime:1,workingType:"Electrical"},
-                    {id:"6",name:"Terminal Listrik Utama Mati",priority:1,executionTime:1,workingType:"Electrical"},
-                    {id:"7",name:"Air Kran Tidak Keluar",priority:2,executionTime:1,workingType:"Engineering"},
-                    {id:"8",name:"Atap Bocor",priority:1,executionTime:1,workingType:"Engineering"}
-                ]
+                problemList: []
             }
         },
         methods: {
@@ -215,16 +209,41 @@
                 }
             },
             addData() {
-                // this.listValueTable
+
             },
             addToData(item) {
                 if (this.dataList.filter(data => data.id === item.id).length === 0) {
                     this.dataList.push(item);
                 }
             },
+            onSaveButtonClick() {
+                this.form.problemList = this.dataList;
+                FacilitiesApi.save(this.form, () => {
+                    this.onCancelButton();
+                    this.repopulateData();
+                })
+            },
             removeData(idx) {
                 this.dataList.splice(idx, 1);
-            }
+            },
+            repopulateData() {
+                ProblemApi.getAll((result) => {
+                    result.forEach((item) => {
+                        if (item.workingType === "1") {
+                            item.workingTypeObj = this.listValue[0];
+                        } else {
+                            item.workingTypeObj = this.listValue[1];
+                        }
+                    });
+                    this.problemList = result;
+                });
+                FacilitiesApi.getAll((result) => {
+                    this.listValueTable = result;
+                });
+            },
+        },
+        mounted: function() {
+            this.repopulateData();
         }
     }
 </script>

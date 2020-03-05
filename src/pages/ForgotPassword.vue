@@ -8,13 +8,13 @@
             <div v-show="initiate" class="card-body">
                 <form>
                     <p>Don't worry, we'll send you an email to reset your password.</p>
-                    <input-email v-model="email"></input-email>
-                    <reset-password-button @click.native="onResetPasswordClick"></reset-password-button>
+                    <input-email v-model="email"/>
+                    <reset-password-button @click.native="onResetPasswordClick"/>
                 </form>
             </div>
             <div v-show="!initiate" class="card-body">
                 <p>Thank you ^_^. Temporary password already sent to your Email. Make sure you change it and don't forget again. Okey...</p>
-                <general-button href="#/login" text="Back"></general-button>
+                <general-button href="#/login" text="Back"/>
             </div>
             <div class="card-footer text-center">
                 <span>Don't have an account? <a href="pages-sign-up.html">Sign Up</a></span>

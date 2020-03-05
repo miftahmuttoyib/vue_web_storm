@@ -131,7 +131,7 @@
                                     <tr v-for="(item, index) in facilitiesList" v-bind:aria-valuemax="item.id" :key="index">
                                         <td>{{item.id}}</td>
                                         <td>{{item.name}}</td>
-                                        <td>{{item.facilitiesType}}</td>
+                                        <td>{{item.facilitiesTypeObj.name}}</td>
                                         <td>
                                             <button class="btn btn-sm btn-outline-light" data-dismiss="modal" @click="addToData(item)">
                                                 <i class="fas fa-plus"/>
@@ -156,7 +156,7 @@
     import HeaderContent from "@/components/main/content/HeaderContent";
     import LinkedButton from "@/components/button/LinkedButton";
     import InputText from "@/components/input/InputText";
-    // import DropDown from "@/components/input/DropDown";
+    import {FacilitiesApi} from "@/API/FacilitiesApi";
     export default {
         name: "Room",
         components: {InputText, LinkedButton, HeaderContent},
@@ -170,6 +170,10 @@
                 label: {
                     facilities: "Facilities"
                 },
+                listValue: [
+                    {id: 1, name: "Electrical"},
+                    {id: 2, name: "Mechanic/Sipil"}
+                ],
                 isAdd: false,
                 listValueTable: [
                     {id:"1",name:"Kamar Mandi",facilitiesList: ["Shower", "Closet", "Sink"]},
@@ -180,15 +184,7 @@
                     {id:"8",name:"Balkon",facilitiesList: ["Pagar Pembatas", "Lantai", "Tembok", "Atap"]}
                 ],
                 dataList: [],
-                facilitiesList: [
-                    {id:"1",name:"TV",facilitiesType:"Electrical"},
-                    {id:"3",name:"AC",facilitiesType:"Electrical"},
-                    {id:"4",name:"Sink",facilitiesType:"Engineering"},
-                    {id:"5",name:"Mesin Cuci",facilitiesType:"Electrical"},
-                    {id:"6",name:"Terminal Listrik",facilitiesType:"Electrical"},
-                    {id:"7",name:"Tembok",facilitiesType:"Engineering"},
-                    {id:"8",name:"Atap Bocor",facilitiesType:"Engineering"}
-                ]
+                facilitiesList: []
             }
         },
         methods: {
@@ -213,7 +209,22 @@
             },
             removeData(idx) {
                 this.dataList.splice(idx, 1);
-            }
+            },
+            repopulateData() {
+                FacilitiesApi.getAll((result) => {
+                    result.forEach((item) => {
+                        if (item.facilitiesType === "1") {
+                            item.facilitiesTypeObj = this.listValue[0];
+                        } else {
+                            item.facilitiesTypeObj = this.listValue[1];
+                        }
+                    });
+                    this.facilitiesList = result;
+                });
+            },
+        },
+        mounted: function() {
+            this.repopulateData();
         }
     }
 </script>

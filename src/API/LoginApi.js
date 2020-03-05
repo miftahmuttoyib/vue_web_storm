@@ -3,7 +3,6 @@ export class LoginApi {
     static getUser(resultData) {
         // eslint-disable-next-line no-undef
         return $.ajax({
-            // url: "https://jsonplaceholder.typicode.com/posts",
             url: "http://localhost:8081/WebApp/rest/goods/get/all",
             type: "GET",
             success: function (result) {
