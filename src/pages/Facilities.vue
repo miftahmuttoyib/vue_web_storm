@@ -228,13 +228,6 @@
             },
             repopulateData() {
                 ProblemApi.getAll((result) => {
-                    result.forEach((item) => {
-                        if (item.workingType === "1") {
-                            item.workingTypeObj = this.listValue[0];
-                        } else {
-                            item.workingTypeObj = this.listValue[1];
-                        }
-                    });
                     this.problemList = result;
                 });
                 FacilitiesApi.getAll((result) => {

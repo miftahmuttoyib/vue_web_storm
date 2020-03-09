@@ -29,7 +29,7 @@
                                             <td>{{item.name}}</td>
                                             <td>
                                                 <ul>
-                                                    <li v-for="facilities in item.facilitiesList" :key="facilities">{{facilities}}</li>
+                                                    <li v-for="facilities in item.facilitiesList" :key="facilities.id">{{facilities.name}}</li>
                                                 </ul>
                                             </td>
                                             <td>
@@ -55,7 +55,7 @@
                                 <form class="needs-validation" novalidate>
                                     <div class="row">
                                         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 ">
-                                            <input-text label="Name" mandatory="true" validation-feedback="Ops... your input just wrong! T_T"/>
+                                            <input-text v-model="form.name" label="Name" mandatory="true" validation-feedback="Ops... your input just wrong! T_T"/>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -95,7 +95,7 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                            <button class="btn btn-space btn-primary" type="submit">Submit form</button>
+                                            <save-button @click.native="onSaveButtonClick"/>
                                             <button class="btn btn-space btn-secondary" @click="onCancelButton">Cancel</button>
                                         </div>
                                     </div>
@@ -157,9 +157,11 @@
     import LinkedButton from "@/components/button/LinkedButton";
     import InputText from "@/components/input/InputText";
     import {FacilitiesApi} from "@/API/FacilitiesApi";
+    import {RoomApi} from "@/API/RoomApi";
+    import SaveButton from "@/components/button/SaveButton";
     export default {
         name: "Room",
-        components: {InputText, LinkedButton, HeaderContent},
+        components: {SaveButton, InputText, LinkedButton, HeaderContent},
         props: {
 
         },
@@ -175,13 +177,17 @@
                     {id: 2, name: "Mechanic/Sipil"}
                 ],
                 isAdd: false,
+                form: {
+                    name: "",
+                    facilitiesList: []
+                },
                 listValueTable: [
-                    {id:"1",name:"Kamar Mandi",facilitiesList: ["Shower", "Closet", "Sink"]},
-                    {id:"4",name:"Kamar Tidur Utama",facilitiesList: ["Atap", "Tembok", "AC"]},
-                    {id:"5",name:"Kamar Tidur Anak",facilitiesList: ["Lantai", "Meja Belajar", "AC", "Jendela"]},
-                    {id:"6",name:"Ruang Tamu",facilitiesList: ["Lampu", "TV", "Terminal Listrik", "AC"]},
-                    {id:"7",name:"Dapur",facilitiesList: ["Sink", "Kompor", "Kulkas", "Atap", "Tembok"]},
-                    {id:"8",name:"Balkon",facilitiesList: ["Pagar Pembatas", "Lantai", "Tembok", "Atap"]}
+                    // {id:"1",name:"Kamar Mandi",facilitiesList: ["Shower", "Closet", "Sink"]},
+                    // {id:"4",name:"Kamar Tidur Utama",facilitiesList: ["Atap", "Tembok", "AC"]},
+                    // {id:"5",name:"Kamar Tidur Anak",facilitiesList: ["Lantai", "Meja Belajar", "AC", "Jendela"]},
+                    // {id:"6",name:"Ruang Tamu",facilitiesList: ["Lampu", "TV", "Terminal Listrik", "AC"]},
+                    // {id:"7",name:"Dapur",facilitiesList: ["Sink", "Kompor", "Kulkas", "Atap", "Tembok"]},
+                    // {id:"8",name:"Balkon",facilitiesList: ["Pagar Pembatas", "Lantai", "Tembok", "Atap"]}
                 ],
                 dataList: [],
                 facilitiesList: []
@@ -207,18 +213,21 @@
                     this.dataList.push(item);
                 }
             },
+            onSaveButtonClick() {
+                this.form.facilitiesList = this.dataList;
+                RoomApi.save(this.form, () => {
+                    this.onCancelButton();
+                    this.repopulateData();
+                })
+            },
             removeData(idx) {
                 this.dataList.splice(idx, 1);
             },
             repopulateData() {
+                RoomApi.getAll((result) => {
+                    this.listValueTable = result;
+                });
                 FacilitiesApi.getAll((result) => {
-                    result.forEach((item) => {
-                        if (item.facilitiesType === "1") {
-                            item.facilitiesTypeObj = this.listValue[0];
-                        } else {
-                            item.facilitiesTypeObj = this.listValue[1];
-                        }
-                    });
                     this.facilitiesList = result;
                 });
             },

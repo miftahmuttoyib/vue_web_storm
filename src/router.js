@@ -11,6 +11,7 @@ import Problem from "@/pages/Problem";
 import Facilities from "@/pages/Facilities";
 import Room from "@/pages/Room";
 import Building from "@/pages/Building";
+import Floor from "@/pages/Floor";
 
 Vue.use(Router);
 
@@ -61,6 +62,11 @@ export default new Router({
             path: "/building",
             name: "building",
             component: Building
+        },
+        {
+            path: "/floor",
+            name: "floor",
+            component: Floor
         }
     ]
 
