@@ -8,13 +8,14 @@
                             Menu
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="#/problem" ><i class="fas fa-info-circle"/>Problem</a>
+                            <a class="nav-link" href="#/problem" ><i class="fas fa-wrench"/>Problem</a>
                             <a class="nav-link" href="#/facilities" ><i class="fas fa-couch"/>Facilities</a>
                             <a class="nav-link" href="#/room" ><i class="fas fa-box"/>Room</a>
                             <a class="nav-link" href="#/apartment" ><i class="fas fa-home"/>Apartment</a>
                             <a class="nav-link" href="#/floor" ><i class="fas fa-align-center"/>Floor</a>
                             <a class="nav-link" href="#/building" ><i class="fas fa-building"/>Building</a>
-                            <a class="nav-link" href="#/complain" ><i class="fas fa-building"/>Complain</a>
+                            <a class="nav-link" href="#/complaint" ><i class="fas fa-info-circle"/>Complaint</a>
+                            <a class="nav-link" href="#/test" ><i class="fas fa-bug"/>Test</a>
                         </li>
                     </ul>
                 </div>

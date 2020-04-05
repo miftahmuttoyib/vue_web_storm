@@ -77,18 +77,18 @@
 </template>
 
 <script>
-    import HeaderContent from "@/components/main/content/HeaderContent";
     import GeneralButton from "@/components/button/LinkedButton";
-    import InputText from "@/components/input/InputText";
-    import InputNumber from "@/components/input/InputNumber";
-    import {FloorApi} from "@/API/FloorApi";
-    import SaveButton from "@/components/button/SaveButton";
-    import ButtonIconEdit from "@/components/button/ButtonIconEdit";
     import ButtonIconRemove from "@/components/button/ButtonIconRemove";
     import CancelButton from "@/components/button/CancelButton";
+    import ButtonIconEdit from "@/components/button/ButtonIconEdit";
+    import SaveButton from "@/components/button/SaveButton";
+    import InputNumber from "@/components/input/InputNumber";
+    import InputText from "@/components/input/InputText";
+    import HeaderContent from "@/components/main/content/HeaderContent";
+    import {FloorApi} from "@/API/FloorApi";
 
     export default {
-        name: "Floor",
+        name: "Technician",
         components: {
             GeneralButton,
             ButtonIconRemove, CancelButton,

@@ -1,7 +1,7 @@
 <template>
     <div class="dashboard-wrapper">
         <div class="dashboard-ecommerce">
-            <div class="container-fluid dashboard-content ">
+            <div class="container-fluid dashboard-content">
                 <header-content :title="title"/>
                 <div v-if="!isAdd" class="row">
                     <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">

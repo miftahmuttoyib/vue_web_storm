@@ -6,7 +6,7 @@
 
 <script>
     export default {
-        name: "GeneralButton",
+        name: "LinkedButton",
         props: {
             text: {
                 required: true
