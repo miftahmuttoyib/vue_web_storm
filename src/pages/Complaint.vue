@@ -56,8 +56,7 @@
 
 <script>
     import HeaderContent from "@/components/main/content/HeaderContent";
-    import {ProblemApi} from "@/API/ProblemApi";
-    import {FacilitiesApi} from "@/API/FacilitiesApi";
+    import {ComplaintApi} from "@/API/ComplaintApi";
     export default {
         name: "Complaint",
         components: {HeaderContent},
@@ -82,10 +81,7 @@
                 return idx;
             },
             repopulateData() {
-                ProblemApi.getAll((result) => {
-                    this.problemList = result;
-                });
-                FacilitiesApi.getAll((result) => {
+                ComplaintApi.getAll((result) => {
                     this.listValueTable = result;
                 });
             },
