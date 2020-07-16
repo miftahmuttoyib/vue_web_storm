@@ -8,7 +8,11 @@ export class ComplaintApi {
             url: AppConfig.appUrl + "complaint/get/all",
             type: "GET",
             success: function (result) {
-                ZavieraLib.convertFacilitiesTypeToObj(result);
+                ZavieraLib.convertComplaintStatusToObj(result);
+                result.forEach(item => {
+                    ZavieraLib.convertWorkingTypeToObj(item.problem);
+                    item.createDateString = ZavieraLib.toDateTime(new Date(item.createDate));
+                });
                 resultData(result);
             },
             error: function (error) {
@@ -30,6 +34,42 @@ export class ComplaintApi {
                 console.log(error);
             }
         });
+    }
+
+    static updateStatus(id, statusNo, resultData) {
+        return $.ajax({
+            url: AppConfig.appUrl + "complaint/get/update/status" + AppConfig.parseParam([id, statusNo]),
+            type: "GET",
+            success: function (result) {
+                ComplaintApi.mapIdToObj(result);
+                resultData(result);
+            },
+            error: function (error) {
+                // eslint-disable-next-line no-console
+                console.log(error);
+            }
+
+        });
+    }
+
+    static startWorking(id, resultData) {
+        return $.ajax({
+            url: AppConfig.appUrl + "complaint/get/update/status" + AppConfig.parseParam([id]),
+            type: "GET",
+            success: function (result) {
+                ComplaintApi.mapIdToObj(result);
+                resultData(result);
+            },
+            error: function (error) {
+                // eslint-disable-next-line no-console
+                console.log(error);
+            }
+        });
+    }
+
+    static mapIdToObj(result) {
+        ZavieraLib.convertComplaintStatusToObj(result);
+        ZavieraLib.convertWorkingTypeToObj(result.problem);
     }
 
     static save(data, onSuccess) {

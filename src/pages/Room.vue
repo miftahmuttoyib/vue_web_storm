@@ -34,7 +34,7 @@
                                             </td>
                                             <td>
                                                 <div class="btn-group ml-auto">
-                                                    <button class="btn btn-sm btn-outline-light" @click="editData(item.id)">Edit</button>
+<!--                                                    <button class="btn btn-sm btn-outline-light" @click="editData(item.id)">Edit</button>-->
                                                     <button class="btn btn-sm btn-outline-light" @click="removeData(index)">
                                                         <i class="far fa-trash-alt"/>
                                                     </button>

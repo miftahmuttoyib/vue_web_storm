@@ -30,7 +30,7 @@
                                             <td>{{item.code}}</td>
                                             <td>
                                                 <div class="btn-group ml-auto">
-                                                    <button-icon-edit @click.native="editData(item.id)"/>
+<!--                                                    <button-icon-edit @click.native="editData(item.id)"/>-->
                                                     <button-icon-remove @click.native="removeData(index)"/>
                                                 </div>
                                             </td>
@@ -77,7 +77,6 @@
     import InputText from "@/components/input/InputText";
     import InputNumber from "@/components/input/InputNumber";
     import SaveButton from "@/components/button/SaveButton";
-    import ButtonIconEdit from "@/components/button/ButtonIconEdit";
     import ButtonIconRemove from "@/components/button/ButtonIconRemove";
     import CancelButton from "@/components/button/CancelButton";
     import {BuildingApi} from "@/API/BuildingApi";
@@ -87,7 +86,7 @@
         components: {
             GeneralButton,
             ButtonIconRemove, CancelButton,
-            ButtonIconEdit, SaveButton, InputNumber, InputText, HeaderContent},
+            SaveButton, InputNumber, InputText, HeaderContent},
         props: {
 
         },

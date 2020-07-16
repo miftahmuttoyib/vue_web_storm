@@ -1,13 +1,13 @@
 <template>
     <div class="form-group">
         <label :for="label">{{label}} <small class="text-muted">{{note}}</small></label>
-        <input type="text" class="form-control decimal-inputmask"
+        <input type="number" class="form-control decimal-inputmask"
                :id="label"
                :placeholder="placeholder"
                :value="value"
                :required="mandatory"
                @input="updateValue"
-               style="text-align: right;">
+               style="text-align: left;">
         <div class="invalid-feedback">
             {{validationFeedback}}
         </div>

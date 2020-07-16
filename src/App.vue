@@ -30,7 +30,13 @@ export default {
     },
     mounted: function () {
         this.session = true;
+        if (window.location.hash === "#/spk") {
+            this.session = false
+        }
 
+        if (window.location.hash === "#/") {
+            this.session = false
+        }
     }
 }
 </script>

@@ -22,6 +22,7 @@
                                             <th>Priority</th>
                                             <th>Working Type</th>
                                             <th>Execution Time</th>
+                                            <th>Manpower</th>
                                             <th>Action</th>
                                         </tr>
                                         </thead>
@@ -32,9 +33,10 @@
                                             <td>{{item.priority}}</td>
                                             <td>{{item.workingTypeObj.name}}</td>
                                             <td>{{item.executionTime}} Hari</td>
+                                            <td>{{item.manpower}}</td>
                                             <td>
                                                 <div class="btn-group ml-auto">
-                                                    <button-icon-edit @click.native="editData(item.id)"/>
+<!--                                                    <button-icon-edit @click.native="editData(item.id)"/>-->
                                                     <button-icon-remove @click.native="removeData(index)"/>
                                                 </div>
                                             </td>
@@ -55,11 +57,18 @@
                                         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 ">
                                             <input-text v-model="form.name" label="Problem Description" mandatory="true" validation-feedback="Ops... your input just wrong! T_T"/>
                                         </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 ">
                                             <input-number v-model="form.priority" label="Priority" mandatory="true" note="(Number Only)"/>
                                         </div>
-                                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 ">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
                                             <input-number v-model="form.executionTime" label="Execution Time" mandatory="true" note="(Number or Decimal)"/>
+                                        </div>
+                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                            <input-number v-model="form.manpower" label="Manpower" mandatory="true" note="(Number)"/>
                                         </div>
                                     </div>
                                     <div class="form-row">
@@ -89,7 +98,6 @@
     import DropDown from "@/components/input/DropDown";
     import {ProblemApi} from "@/API/ProblemApi";
     import SaveButton from "@/components/button/SaveButton";
-    import ButtonIconEdit from "@/components/button/ButtonIconEdit";
     import ButtonIconRemove from "@/components/button/ButtonIconRemove";
     import CancelButton from "@/components/button/CancelButton";
 
@@ -98,7 +106,7 @@
         components: {
             GeneralButton,
             ButtonIconRemove, CancelButton,
-            ButtonIconEdit, SaveButton, DropDown, InputNumber, InputText, HeaderContent},
+            SaveButton, DropDown, InputNumber, InputText, HeaderContent},
         props: {
 
         },
@@ -115,7 +123,8 @@
                     name: "",
                     priority: undefined,
                     executionTime: undefined,
-                    workingType: undefined
+                    workingType: undefined,
+                    manpower: undefined
                 },
                 listValueTable: []
             }

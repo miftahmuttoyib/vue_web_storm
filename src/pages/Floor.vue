@@ -20,7 +20,7 @@
                                             <th>Id</th>
                                             <th>Name</th>
                                             <th>Code</th>
-                                            <th>Level</th>
+<!--                                            <th>Level</th>-->
                                             <th>Action</th>
                                         </tr>
                                         </thead>
@@ -29,10 +29,10 @@
                                             <td>{{item.id}}</td>
                                             <td>{{item.name}}</td>
                                             <td>{{item.code}}</td>
-                                            <td>{{item.level}}</td>
+<!--                                            <td>{{item.level}}</td>-->
                                             <td>
                                                 <div class="btn-group ml-auto">
-                                                    <button-icon-edit @click.native="editData(item.id)"/>
+<!--                                                    <button-icon-edit @click.native="editData(item.id)"/>-->
                                                     <button-icon-remove @click.native="removeData(index)"/>
                                                 </div>
                                             </td>
@@ -83,7 +83,6 @@
     import InputNumber from "@/components/input/InputNumber";
     import {FloorApi} from "@/API/FloorApi";
     import SaveButton from "@/components/button/SaveButton";
-    import ButtonIconEdit from "@/components/button/ButtonIconEdit";
     import ButtonIconRemove from "@/components/button/ButtonIconRemove";
     import CancelButton from "@/components/button/CancelButton";
 
@@ -92,7 +91,7 @@
         components: {
             GeneralButton,
             ButtonIconRemove, CancelButton,
-            ButtonIconEdit, SaveButton, InputNumber, InputText, HeaderContent},
+            SaveButton, InputNumber, InputText, HeaderContent},
         props: {
 
         },

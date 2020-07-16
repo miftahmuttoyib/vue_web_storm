@@ -35,7 +35,7 @@
     import CheckBoxRememberMe from "@/components/input/CheckBoxRememberMe";
     import InputPassword from "@/components/input/InputPassword";
     import InputUsername from "@/components/input/InputUsername";
-    import {LoginApi} from "@/API/LoginApi";
+    // import {LoginApi} from "@/API/LoginApi";
     export default {
         name: "login",
         components: {InputUsername, InputPassword, CheckBoxRememberMe, LoginButton},
@@ -47,9 +47,11 @@
         },
         methods: {
             onLoginButtonClick() {
-                LoginApi.getUser(function (result) {
-                    alert(result.id);
-                });
+                window.location.hash = "#/complaint";
+                window.location.reload();
+                // LoginApi.getUser(function (result) {
+                //     alert(result.id);
+                // });
             }
         }
     }

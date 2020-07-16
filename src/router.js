@@ -14,6 +14,8 @@ import Building from "@/pages/Building";
 import Floor from "@/pages/Floor";
 import Complaint from "@/pages/Complaint";
 import Test from "@/pages/Test";
+import Apartment from "@/pages/Apartment";
+import Spk from "@/pages/Spk";
 
 Vue.use(Router);
 
@@ -71,14 +73,24 @@ export default new Router({
             component: Floor
         },
         {
-            path: "/compaint",
+            path: "/complaint",
             name: "complaint",
             component: Complaint
+        },
+        {
+            path: "/apartment",
+            name: "apartment",
+            component: Apartment
         },
         {
             path: "/test",
             name: "test",
             component: Test
+        },
+        {
+            path: "/spk",
+            name: "spk",
+            component: Spk,
         }
     ]
 
